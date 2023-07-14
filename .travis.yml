@@ -1,0 +1,17 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.9"
+  - "3.11"
+  - "pypy"
+install:
+  - pip install -r requirements-dev.txt
+  - pip install coveralls
+script:
+  - py.test --cov efipay
+after_success:
+  coveralls
