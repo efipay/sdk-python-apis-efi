@@ -359,6 +359,10 @@ class Constants(object):
                 'pix_split_detail_config': {
                     'route': '/v2/gn/split/config/:id',
                     'method': 'get'
+                },
+                'pix_send_detail_id': {
+                    'route': '/v2/gn/pix/enviados/id-envio/:idEnvio',
+                    'method': 'get'
                 }
             }
         },
@@ -444,9 +448,9 @@ class Constants(object):
                     'route': '/cadastro/conta-simplificada/:idContaSimplificada/credenciais',
                     'method': 'get'
                 },
-                'get_account_certificate': {
+                'create_account_certificate': {
                     'route': '/cadastro/conta-simplificada/:idContaSimplificada/certificado',
-                    'method': 'get'
+                    'method': 'post'
                 },
                 'account_config_webhook': {
                     'route': '/cadastro/webhook',
