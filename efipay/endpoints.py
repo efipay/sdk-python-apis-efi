@@ -80,7 +80,7 @@ class Endpoints(object):
             headers = {
                 'Authorization': 'Bearer {token}'.format(token=self.token['access_token']),
                 'Content-Type': 'application/json',
-                'api-sdk': 'python-{v}'.format(v=VERSION)
+                'api-sdk': 'efi-python-{v}'.format(v=VERSION)
             }
 
             for (key,value) in headersComplement.items():
@@ -93,7 +93,7 @@ class Endpoints(object):
         else:
             headers = {
                 'accept': 'application/json',
-                'api-sdk': 'python-{v}'.format(v=VERSION),
+                'api-sdk': 'efi-python-{v}'.format(v=VERSION),
                 'Authorization': 'Bearer {token}'.format(token=self.token['access_token'])
             }
             if 'partner_token' in self.options:
@@ -120,7 +120,7 @@ class Endpoints(object):
         else:
             headers = {
                 'accept': 'application/json',
-                'api-sdk': 'python-{v}'.format(v=VERSION)
+                'api-sdk': 'efi-python-{v}'.format(v=VERSION)
             }
             if 'partner_token' in self.options:
                 headers['partner-token'] = self.options['partner_token']
