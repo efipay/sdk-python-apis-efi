@@ -28,24 +28,24 @@ class Endpoints(object):
 
     def __getattr__(self, name): 
 
-        if name in Constants.APIS['PIX']['ENDPOINTS']:
-            self.endpoints = Constants.APIS['PIX']['ENDPOINTS']
-            self.urls = Constants.APIS['PIX']['URL']
-        elif name in Constants.APIS['OPEN-FINANCE']['ENDPOINTS']:
-            self.endpoints = Constants.APIS['OPEN-FINANCE']['ENDPOINTS']
-            self.urls = Constants.APIS['OPEN-FINANCE']['URL']
-        elif name in Constants.APIS['PAYMENTS']['ENDPOINTS']:
-            self.endpoints = Constants.APIS['PAYMENTS']['ENDPOINTS']
-            self.urls = Constants.APIS['PAYMENTS']['URL']
-        elif name in Constants.APIS['OPENING-ACCOUNTS']['ENDPOINTS']:
-            self.endpoints = Constants.APIS['OPENING-ACCOUNTS']['ENDPOINTS']
-            self.urls = Constants.APIS['OPENING-ACCOUNTS']['URL']
-        else:
+        apis = Constants.APIS
+        api_names = ['PIX', 'OPEN-FINANCE', 'PAYMENTS', 'OPENING-ACCOUNTS']
+
+        for api_name in api_names:
+            if name in apis[api_name]['ENDPOINTS']:
+                self.endpoints = apis[api_name]['ENDPOINTS']
+                self.urls = apis[api_name]['URL']
+                self.cert = True
+                break
+        
+        if name in Constants.APIS['CHARGES']['ENDPOINTS']:
             self.endpoints = Constants.APIS['CHARGES']['ENDPOINTS']
             self.urls =  Constants.APIS['CHARGES']['URL']
-            self.options['certificate'] = None
+            self.cert = False
+        
         self.get_url()
         return partial( self.request, self.endpoints[name])
+        
 
     def request(self, settings, **kwargs):
 
@@ -63,10 +63,13 @@ class Endpoints(object):
 
             try:
                 response.json()
-            except:
-                return '{\'code\': ' + str(response.status_code) + '}'
-            else:
                 return response.json()
+            except:
+                if(response and response.text != ''):
+                    msg = '{\'code\': ' + str(response.status_code) + ', \'content\': \'' + response.text + '\'}'
+                    return msg
+                else:
+                    return '{\'code\': ' + str(response.status_code) + '}'
         elif(oauth == 404):
             return CertificateError(404)
         else:
