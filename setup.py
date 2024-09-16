@@ -17,7 +17,7 @@ dependencies = [dependency.strip()
 setup(
     name='efipay',
 
-    version='1.0.1',
+    version='1.0.2',
 
     description='Module for integration with EfiPay API',
     long_description=long_description,
