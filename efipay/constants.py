@@ -100,6 +100,10 @@ class Constants(object):
                     'route': '/subscription/:id/metadata',
                     'method': 'put'
                 },
+                'update_subscription': {
+                    'route': '/subscription/:id',
+                    'method': 'put'
+                },
                 'create_subscription_history': {
                     'route': '/subscription/:id/history',
                     'method': 'post'
@@ -175,6 +179,22 @@ class Constants(object):
                 'settle_carnet_parcel': {
                     'route': '/carnet/:id/parcel/:parcel/settle',
                     'method': 'put'
+                },
+                'card_payment_retry': {
+                    'route': '/charge/:id/retry',
+                    'method': 'post'
+                },
+                'refund_card': {
+                    'route': '/charge/card/:id/refund',
+                    'method': 'post'
+                },
+                'update_carnet_parcels': {
+                    'route': '/carnet/:id/parcels',
+                    'method': 'put'
+                },
+                'list_charges': {
+                    'route': '/charges',
+                    'method': 'get'
                 }
             }
         },
@@ -363,6 +383,38 @@ class Constants(object):
                 'pix_send_detail_id': {
                     'route': '/v2/gn/pix/enviados/id-envio/:idEnvio',
                     'method': 'get'
+                },
+                'med_list': {
+                    'route': '/v2/gn/infracoes',
+                    'method': 'get'
+                },
+                'med_defense': {
+                    'route': '/v2/gn/infracoes/:idInfracao/defesa',
+                    'method': 'post'
+                },
+                'pix_create_due_charge_batch': {
+                    'route': '/v2/lotecobv/:id',
+                    'method': 'put'
+                },
+                'pix_update_due_charge_batch': {
+                    'route': '/v2/lotecobv/:id',
+                    'method': 'patch'
+                },
+                'pix_detail_due_charge_batch': {
+                    'route': '/v2/lotecobv/:id',
+                    'method': 'get'
+                },
+                'pix_list_due_charge_batch': {
+                    'route': '/v2/lotecobv',
+                    'method': 'get'
+                },
+                'pix_qrcode_pay': {
+                    'route': '/v2/gn/pix/:idEnvio/qrcode',
+                    'method': 'put'
+                },
+                'pix_qrcode_detail': {
+                    'route': '/v2/gn/qrcodes/detalhar',
+                    'method': 'post'
                 }
             }
         },
@@ -399,6 +451,38 @@ class Constants(object):
                 'of_list_pix_payment': {
                     'route': '/pagamentos/pix',
                     'method': 'get'
+                },
+                'of_cancel_schedule_pix': {
+                    'route': '/pagamentos-agendados/pix/:identificadorPagamento/cancelar',
+                    'method': 'patch'
+                },
+                'of_list_schedule_pix_payment': {
+                    'route': '/pagamentos-agendados/pix',
+                    'method': 'get'
+                },
+                'of_start_schedule_pix_payment': {
+                    'route': '/pagamentos-agendados/pix',
+                    'method': 'post'
+                },
+                'of_devolution_schedule_pix': {
+                    'route': '/pagamentos-agendados/pix/:identificadorPagamento/devolver',
+                    'method': 'post'
+                },
+                'of_start_recurrency_pix_payment': {
+                    'route': '/pagamentos-recorrentes/pix',
+                    'method': 'post'
+                },
+                'of_list_recurrency_pix_payment': {
+                    'route': '/pagamentos-recorrentes/pix',
+                    'method': 'get'
+                },
+                'of_cancel_recurrency_pix': {
+                    'route': '/pagamentos-recorrentes/pix/:identificadorPagamento/cancelar',
+                    'method': 'patch'
+                },
+                'of_devolution_recurrency_pix': {
+                    'route': '/pagamentos-recorrentes/pix/:identificadorPagamento/devolver',
+                    'method': 'post'
                 }
             }
         },
@@ -426,6 +510,18 @@ class Constants(object):
                 },
                 'pay_list_payments': {
                     'route': '/resumo',
+                    'method': 'get'
+                },
+                'pay_config_webhook': {
+                    'route': '/webhook',
+                    'method': 'put'
+                },
+                'pay_delete_webhook': {
+                    'route': '/webhook',
+                    'method': 'delete'
+                },
+                'pay_list_webhook': {
+                    'route': '/webhook',
                     'method': 'get'
                 }
             }
