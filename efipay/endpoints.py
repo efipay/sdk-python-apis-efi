@@ -29,7 +29,7 @@ class Endpoints(object):
     def __getattr__(self, name): 
 
         apis = Constants.APIS
-        api_names = ['PIX', 'OPEN-FINANCE', 'PAYMENTS', 'OPENING-ACCOUNTS']
+        api_names = ['PIX', 'OPEN-FINANCE', 'PAYMENTS', 'OPENING-ACCOUNTS', 'STATEMENT']
 
         for api_name in api_names:
             if name in apis[api_name]['ENDPOINTS']:
@@ -79,7 +79,7 @@ class Endpoints(object):
     def send(self, settings, params, body, headersComplement):
         url = self.build_url(settings['route'], params)
 
-        if(self.options['certificate']):
+        if(self.cert):
             headers = {
                 'Authorization': 'Bearer {token}'.format(token=self.token['access_token']),
                 'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ class Endpoints(object):
     def authenticate(self):
         url = self.build_url(self.endpoints['authorize']['route'], {})             
         
-        if(self.options['certificate']):
+        if(self.cert):
             auth = base64.b64encode((f"{self.options['client_id']}:{self.options['client_secret']}").encode()).decode()
             payload = "{\r\n    \"grant_type\": \"client_credentials\"\r\n}"
             headers = {
