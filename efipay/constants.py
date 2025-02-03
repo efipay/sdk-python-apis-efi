@@ -224,6 +224,10 @@ class Constants(object):
                     'route': '/v2/webhook/:chave',
                     'method': 'delete'
                 },
+                'pix_resend_webhook': {
+                    'route': '/v2/gn/webhook/reenviar',
+                    'method': 'post'
+                },
                 'pix_create_charge': {
                     'route': '/v2/cob/:txid',
                     'method': 'put'
@@ -265,7 +269,7 @@ class Constants(object):
                     'method': 'get'
                 },
                 'pix_send_list': {
-                    'route': '/v2/pix/:e2eId',
+                    'route': '/v2/gn/pix/enviados',
                     'method': 'get'
                 },
                 'pix_detail_received': {
@@ -529,7 +533,7 @@ class Constants(object):
         'OPENING-ACCOUNTS': {
             'URL': {
                 'production': 'https://abrircontas.api.efipay.com.br/v1',
-                'sandbox': ''
+                'sandbox': 'https://abrircontas-h.api.efipay.com.br/v1'
             },
             'ENDPOINTS': {
                 'authorize': {
@@ -537,32 +541,68 @@ class Constants(object):
                     'method': 'post'
                 },
                 'create_account': {
-                    'route': '/cadastro/conta-simplificada',
+                    'route': '/conta-simplificada',
                     'method': 'post'
                 },
                 'get_account_credentials': {
-                    'route': '/cadastro/conta-simplificada/:idContaSimplificada/credenciais',
+                    'route': '/conta-simplificada/:idContaSimplificada/credenciais',
                     'method': 'get'
                 },
                 'create_account_certificate': {
-                    'route': '/cadastro/conta-simplificada/:idContaSimplificada/certificado',
+                    'route': '/conta-simplificada/:idContaSimplificada/certificado',
                     'method': 'post'
                 },
                 'account_config_webhook': {
-                    'route': '/cadastro/webhook',
+                    'route': '/webhook',
                     'method': 'post'
                 },
                 'account_list_webhook': {
-                    'route': '/cadastro/webhooks',
+                    'route': '/webhooks',
                     'method': 'get'
                 },
                 'account_detail_webhook': {
-                    'route': '/cadastro/webhook/:identificadorWebhook',
+                    'route': '/webhook/:identificadorWebhook',
                     'method': 'get'
                 },
                 'account_delete_webhook': {
-                    'route': '/cadastro/webhook/:identificadorWebhook',
+                    'route': '/webhook/:identificadorWebhook',
                     'method': 'delete'
+                }
+            }
+        },
+        'STATEMENT': {
+            'URL': {
+                'production': 'https://extratos.api.efipay.com.br/v1',
+                'sandbox': ''
+            },
+            'ENDPOINTS': {
+                'authorize': {
+                    'route': '/oauth/token',
+                    'method': 'post'
+                },
+                'list_statement_files': {
+                    'route': '/extrato-cnab/arquivos',
+                    'method': 'get'
+                },
+                'get_statement_file': {
+                    'route': '/extrato-cnab/download/:nome_arquivo',
+                    'method': 'get'
+                },
+                'list_statement_recurrences': {
+                    'route': '/extrato-cnab/agendamentos',
+                    'method': 'get'
+                },
+                'create_statement_recurrency': {
+                    'route': '/extrato-cnab/agendar',
+                    'method': 'post'
+                },
+                'update_statement_recurrency': {
+                    'route': '/extrato-cnab/agendar/:identificador',
+                    'method': 'patch'
+                },
+                'create_sftp_key': {
+                    'route': '/extrato-cnab/gerar-chaves',
+                    'method': 'post'
                 }
             }
         }
