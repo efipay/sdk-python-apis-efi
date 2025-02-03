@@ -17,7 +17,7 @@ dependencies = [dependency.strip()
 setup(
     name='efipay',
 
-    version='1.0.2',
+    version='1.0.3',
 
     description='Module for integration with EfiPay API',
     long_description=long_description,
@@ -30,7 +30,7 @@ setup(
     author_email='consultoria@sejaefi.com.br',
 
     # Choose your license
-    license='MIT',
+    license="MIT",
 
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -73,8 +73,7 @@ setup(
     },
 
     package_data={
-        # If any package contains *.txt or *.rst files, include them:
-        '': ['requirements.txt', '.md', 'LICENSE']
+    '': ['requirements.txt', 'README.md', 'LICENSE']
     },
 
     include_package_data=True,
