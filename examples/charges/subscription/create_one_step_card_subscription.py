@@ -17,7 +17,6 @@ body = {
     }],
     'payment': {
         'credit_card': {
-            'installments': 1,
             'payment_token': '5cffb658d047093b3fbdf7eff8c434c3d26a4bd1',
             'billing_address': {
                 'street': 'Av. JK',
