@@ -25,6 +25,13 @@ class Endpoints(object):
         super(Endpoints, self).__init__()
         self.token = None
         self.options = options
+        self.urls = {
+            'production': 'https://api.efipay.com.br/v1',   # URL base de produção (exemplo) como eu especifiquei no issuie
+            'sandbox': 'https://api.efipay.com.br/v1'    # segue a mesma lógica 
+        }
+        use_sandbox = options.get('sandbox', False)
+        self.base_url = self.urls['sandbox'] if use_sandbox else self.urls['production']
+
 
     def __getattr__(self, name): 
 
