@@ -1,7 +1,13 @@
 # encoding: utf-8
 
+import os
+import sys
 from efipay import EfiPay
-from ...credentials import credentials
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.append(project_root)
+
+from credentials import credentials
 
 efi = EfiPay(credentials.CREDENTIALS)
 
@@ -10,13 +16,13 @@ body = {
         'expiracao': 3600
     },
     'devedor': {
-        'cpf': '',
-        'nome': ''
+        'cpf': '16947588774',
+        'nome': 'Victor'
     },
     'valor': {
-        'original': ''
+        'original': '100.20'
     },
-    'chave': '',
+    'chave': '3670469c-f928-4361-ad2d-eb6ec189cb8c',
     'solicitacaoPagador': 'Cobrança dos serviços prestados.'
 }
 

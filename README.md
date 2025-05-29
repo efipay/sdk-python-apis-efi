@@ -12,7 +12,7 @@ $ pip install efipay
 ```
 ## Tested with
 ```
-python 3.11
+python 3.12
 ```
 ## Basic usage
 
