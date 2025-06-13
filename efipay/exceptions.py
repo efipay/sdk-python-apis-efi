@@ -34,3 +34,9 @@ class CertificateError(EfiPayError):
     def __init__(self, status):
         message = "{ 'Status': " + str(status) + ", 'Message': 'Certificate not found.' }"
         super(CertificateError, self).__init__(message)
+
+class MethodError(EfiPayError):
+
+    def __init__(self, method):
+        message = f"{{ 'Status': 404, 'Message': 'The method \"{method}\" does not exist.' }}"
+        super(MethodError, self).__init__(message)
