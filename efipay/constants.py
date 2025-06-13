@@ -419,6 +419,102 @@ class Constants(object):
                 'pix_qrcode_detail': {
                     'route': '/v2/gn/qrcodes/detalhar',
                     'method': 'post'
+                },
+                'pix_get_receipt': {
+                    'route': '/v2/gn/pix/comprovantes',
+                    'method': 'get'
+                },
+                'pix_detail_recurrence_automatic': {
+                    'route': '/v2/rec/:idRec',
+                    'method': 'get'
+                },
+                'pix_update_recurrence_automatic': {
+                    'route': '/v2/rec/:idRec',
+                    'method': 'patch'
+                },
+                'pix_list_recurrence_automatic': {
+                    'route': '/v2/rec',
+                    'method': 'get'
+                },
+                'pix_create_recurrence_automatic': {
+                    'route': '/v2/rec',
+                    'method': 'post'
+                },
+                'pix_create_request_recurrence_automatic': {
+                    'route': '/v2/solicrec',
+                    'method': 'post'
+                },
+                'pix_detail_request_recurrence_automatic': {
+                    'route': '/v2/solicrec/:idSolicRec',
+                    'method': 'get'
+                },
+                'pix_update_request_recurrence_automatic': {
+                    'route': '/v2/solicrec/:idSolicRec',
+                    'method': 'patch'
+                },
+                'pix_create_automatic_charge_txid': {
+                    'route': '/v2/cobr/:txid',
+                    'method': 'put'
+                },
+                'pix_update_automatic_charge': {
+                    'route': '/v2/cobr/:txid',
+                    'method': 'patch'
+                },
+                'pix_detail_automatic_charge': {
+                    'route': '/v2/cobr/:txid',
+                    'method': 'get'
+                },
+                'pix_create_automatic_charge': {
+                    'route': '/v2/cobr',
+                    'method': 'post'
+                },
+                'pix_list_automatic_charge': {
+                    'route': '/v2/cobr',
+                    'method': 'get'
+                },
+                'pix_retry_request_automatic': {
+                    'route': '/v2/cobr/:txid/retentativa/:data',
+                    'method': 'post'
+                },
+                'pix_create_location_recurrence_automatic': {
+                    'route': '/v2/locrec',
+                    'method': 'post'
+                },
+                'pix_list_location_recurrence_automatic': {
+                    'route': '/v2/locrec',
+                    'method': 'get'
+                },
+                'pix_detail_location_recurrence_automatic': {
+                    'route': '/v2/locrec/:id',
+                    'method': 'get'
+                },
+                'pix_unlink_location_recurrence_automatic': {
+                    'route': '/v2/locrec/:id/idRec',
+                    'method': 'delete'
+                },
+                'pix_config_webhook_recurrence_automatic': {
+                    'route': '/v2/webhookrec',
+                    'method': 'put'
+                },
+                'pix_list_webhook_recurrence_automatic': {
+                    'route': '/v2/webhookrec',
+                    'method': 'get'
+                },
+                'pix_delete_webhook_recurrence_automatic': {
+                    'route': '/v2/webhookrec',
+                    'method': 'delete'
+                },
+                'pix_config_webhook_automatic_charge': {
+                    'route': '/v2/webhookcobr',
+                    'method': 'put'
+                },
+                'pix_list_webhook_automatic_charge': {
+                    'route': '/v2/webhookcobr',
+                    'method': 'get'
+                },
+                'pix_delete_webhook_automatic_charge': {
+                    'route': '/v2/webhookcobr',
+                    'method': 'delete'
                 }
             }
         },
@@ -487,6 +583,50 @@ class Constants(object):
                 'of_devolution_recurrency_pix': {
                     'route': '/pagamentos-recorrentes/pix/:identificadorPagamento/devolver',
                     'method': 'post'
+                },
+                'of_replace_recurrency_pix_parcel': {
+                    'route': '/pagamentos-recorrentes/pix/:identificadorPagamento/substituir/:endToEndId',
+                    'method': 'patch'
+                },
+                'of_create_biometric_enrollment': {
+                    'route': '/jsr/vinculos',
+                    'method': 'post'
+                },
+                'of_list_biometric_enrollment': {
+                    'route': '/jsr/vinculos',
+                    'method': 'get'
+                },
+                'of_create_biometric_pix_payment': {
+                    'route': '/jsr/pagamentos/pix',
+                    'method': 'post'
+                },
+                'of_list_biometric_pix_payment': {
+                    'route': '/jsr/pagamentos/pix',
+                    'method': 'get'
+                },
+                'of_create_automatic_enrollment': {
+                    'route': '/pagamentos-automaticos/adesao',
+                    'method': 'post'
+                },
+                'of_list_automatic_enrollment': {
+                    'route': '/pagamentos-automaticos/adesao',
+                    'method': 'get'
+                },
+                'of_update_automatic_enrollment': {
+                    'route': '/pagamentos-automaticos/adesao',
+                    'method': 'patch'
+                },
+                'of_create_automatic_pix_payment': {
+                    'route': '/pagamentos-automaticos/pix',
+                    'method': 'post'
+                },
+                'of_list_automatic_pix_payment': {
+                    'route': '/pagamentos-automaticos/pix',
+                    'method': 'get'
+                },
+                'of_cancel_automatic_pix_payment': {
+                    'route': '/pagamentos-automaticos/pix',
+                    'method': 'patch'
                 }
             }
         },
