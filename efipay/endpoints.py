@@ -15,6 +15,7 @@ from .exceptions import MissingParametersError
 from .exceptions import UnauthorizedError
 from .exceptions import EndpointError
 from .exceptions import CertificateError
+from .exceptions import MethodError
 from .version import *
 
 from functools import partial
@@ -25,9 +26,9 @@ class Endpoints(object):
         super(Endpoints, self).__init__()
         self.token = None
         self.options = options
+        self.urls = None
 
-    def __getattr__(self, name): 
-
+    def __getattr__(self, name):
         apis = Constants.APIS
         api_names = ['PIX', 'OPEN-FINANCE', 'PAYMENTS', 'OPENING-ACCOUNTS', 'STATEMENT']
 
@@ -36,15 +37,17 @@ class Endpoints(object):
                 self.endpoints = apis[api_name]['ENDPOINTS']
                 self.urls = apis[api_name]['URL']
                 self.cert = True
-                break
-        
-        if name in Constants.APIS['CHARGES']['ENDPOINTS']:
-            self.endpoints = Constants.APIS['CHARGES']['ENDPOINTS']
-            self.urls =  Constants.APIS['CHARGES']['URL']
+                self.get_url()
+                return partial(self.request, self.endpoints[name])
+
+        if name in apis['CHARGES']['ENDPOINTS']:
+            self.endpoints = apis['CHARGES']['ENDPOINTS']
+            self.urls = apis['CHARGES']['URL']
             self.cert = False
-        
-        self.get_url()
-        return partial( self.request, self.endpoints[name])
+            self.get_url()
+            return partial(self.request, self.endpoints[name])
+
+        raise MethodError(method=name)
         
 
     def request(self, settings, **kwargs):
@@ -56,7 +59,7 @@ class Endpoints(object):
 
         if(oauth == 200):
             params = {} if 'params' not in kwargs else kwargs['params']
-            body = {} if 'body' not in kwargs else kwargs['body']
+            body = None if 'body' not in kwargs else kwargs['body']
             headers = {} if 'headers' not in kwargs else kwargs['headers']
 
             response = self.send(settings, params, body, headers)
@@ -92,7 +95,13 @@ class Endpoints(object):
             if 'partner_token' in self.options:
                 headers['partner-token'] = self.options['partner_token']
             cert=self.options['certificate']
-            return requests.request(settings['method'],url, headers=headers, data=json.dumps(body), cert=cert)
+
+            if body: 
+                return requests.request(settings['method'], url, headers=headers, data=json.dumps(body), cert=cert)
+            else:
+                headers.pop('Content-Type', None)
+                return requests.request(settings['method'], url, headers=headers, cert=cert)
+            
         else:
             headers = {
                 'accept': 'application/json',
