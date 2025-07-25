@@ -1,3 +1,8 @@
+# 1.0.5
+
+- Add a new method in the Pix by biometrics.
+
+
 # 1.0.4
 
 - Adds Automatic Pix and Pix by biometrics features.
