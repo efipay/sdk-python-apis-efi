@@ -589,20 +589,24 @@ class Constants(object):
                     'method': 'patch'
                 },
                 'of_create_biometric_enrollment': {
-                    'route': '/jsr/vinculos',
+                    'route': '/pagamentos-biometria/vinculos',
                     'method': 'post'
                 },
                 'of_list_biometric_enrollment': {
-                    'route': '/jsr/vinculos',
+                    'route': '/pagamentos-biometria/vinculos',
                     'method': 'get'
                 },
                 'of_create_biometric_pix_payment': {
-                    'route': '/jsr/pagamentos/pix',
+                    'route': '/pagamentos-biometria/pix',
                     'method': 'post'
                 },
                 'of_list_biometric_pix_payment': {
-                    'route': '/jsr/pagamentos/pix',
+                    'route': '/pagamentos-biometria/pix',
                     'method': 'get'
+                },
+                'of_revoke_biometric_enrollment': {
+                    'route': '/pagamentos-biometria/vinculos',
+                    'method': 'patch'
                 },
                 'of_create_automatic_enrollment': {
                     'route': '/pagamentos-automaticos/adesao',
