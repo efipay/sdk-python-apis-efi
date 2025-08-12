@@ -261,7 +261,7 @@ class Constants(object):
                     'method': 'get'
                 },
                 'pix_send': {
-                    'route': '/v2/gn/pix/:idEnvio',
+                    'route': '/v3/gn/pix/:idEnvio',
                     'method': 'put'
                 },
                 'pix_send_detail': {
