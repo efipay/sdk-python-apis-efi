@@ -1,3 +1,8 @@
+# 1.0.6
+
+- Refactoring of the main class for token reuse.
+
+
 # 1.0.5
 
 - Add a new method in the Pix by biometrics.
