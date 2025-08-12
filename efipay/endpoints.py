@@ -51,32 +51,38 @@ class Endpoints(object):
         
 
     def request(self, settings, **kwargs):
-
-        if(self.base_url == ""):
+        if self.base_url == "":
             return EndpointError(404)
 
-        oauth = self.authenticate()
+        if self.token is None:
+            oauth = self.authenticate()
+            if oauth != 200:
+                return CertificateError(404) if oauth == 404 else UnauthorizedError(oauth)
+            
 
-        if(oauth == 200):
-            params = {} if 'params' not in kwargs else kwargs['params']
-            body = None if 'body' not in kwargs else kwargs['body']
-            headers = {} if 'headers' not in kwargs else kwargs['headers']
+        params = kwargs.get('params', {})
+        body = kwargs.get('body', None)
+        headers = kwargs.get('headers', {})
 
-            response = self.send(settings, params, body, headers)
+        response = self.send(settings, params, body, headers)
 
-            try:
-                response.json()
-                return response.json()
-            except:
-                if(response and response.text != ''):
-                    msg = '{\'code\': ' + str(response.status_code) + ', \'content\': \'' + response.text + '\'}'
-                    return msg
-                else:
-                    return '{\'code\': ' + str(response.status_code) + '}'
-        elif(oauth == 404):
-            return CertificateError(404)
-        else:
-            return UnauthorizedError(oauth)
+        if ((response is not None) and (response.status_code == 401)):
+            self.token = None 
+            oauth_retry = self.authenticate()
+            if oauth_retry == 200:
+                response = self.send(settings, params, body, headers)
+            else:
+                return UnauthorizedError(oauth_retry)
+
+        try:
+            return response.json()
+        except:
+            if response and response.text != '':
+                msg = '{\'code\': ' + str(response.status_code) + ', \'content\': \'' + response.text + '\'}'
+                return msg
+            else:
+                return '{\'code\': ' + str(response.status_code) + '}'
+
             
 
     def send(self, settings, params, body, headersComplement):
@@ -154,7 +160,7 @@ class Endpoints(object):
                 'sandbox'] else self.urls['production']
 
     def build_url(self, route, params):
-        params = {} if params is None else params
+        params = {} if params is None else params.copy()
         route = self.remove_placeholders(route, params)
         return self.complete_url(route, params)
 
