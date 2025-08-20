@@ -85,7 +85,7 @@ class Endpoints(object):
 
             
 
-    def send(self, settings, params, body, headersComplement):
+    def send(self, settings, params, body, headers_complement):
         url = self.build_url(settings['route'], params)
 
         if(self.cert):
@@ -95,7 +95,7 @@ class Endpoints(object):
                 'api-sdk': 'efi-python-{v}'.format(v=VERSION)
             }
 
-            for (key,value) in headersComplement.items():
+            for (key,value) in headers_complement.items():
                 headers[key] = value
 
             if 'partner_token' in self.options:
