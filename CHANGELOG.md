@@ -1,3 +1,8 @@
+# 1.0.7
+
+- Inclusion of new methods in the Pix API.
+
+
 # 1.0.6
 
 - Refactoring of the main class for token reuse.
