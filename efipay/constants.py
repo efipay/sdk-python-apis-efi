@@ -515,6 +515,14 @@ class Constants(object):
                 'pix_delete_webhook_automatic_charge': {
                     'route': '/v2/webhookcobr',
                     'method': 'delete'
+                },
+                'pix_send_same_ownership': {
+                    'route': '/v2/gn/pix/:idEnvio/mesma-titularidade',
+                    'method': 'put'
+                },
+                'pix_keys_bucket': {
+                    'route': '/v2/gn/chaves/balde',
+                    'method': 'get'
                 }
             }
         },
